@@ -6,4 +6,5 @@
  * Time: 1:42 PM
  */
 
-require dirname(__DIR__) . 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
+
