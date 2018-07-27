@@ -15,6 +15,8 @@
 ### 使用
 
 ```php
+use JimChen\MobSms\MobSms;
+
 $sms = new MobSms([
     'appkey' => '27xxxxxxxxx',
     'zone'   => 86   // 区号
