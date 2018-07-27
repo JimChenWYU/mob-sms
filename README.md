@@ -4,15 +4,15 @@
 
 [官网文档](http://sms.mob.com/)
 
+### 环境需求
+
+- PHP >= 5.5
+
 ### 安装
 
 ```bash
 $ composer require "jimchen/mob-sms"
 ```
-
-### 环境需求
-
-- PHP >= 5.5
 
 ### 使用
 
