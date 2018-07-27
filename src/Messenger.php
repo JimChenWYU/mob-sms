@@ -60,7 +60,7 @@ class Messenger implements MessengerInterface
      * @return array
      * @throws RequestErrorException
      */
-    public function send(PhoneNumberInterface $to, $code)
+    public function verify(PhoneNumberInterface $to, $code)
     {
         $headers = [
             'content-type' => 'application/x-www-form-urlencoded;charset=UTF-8',

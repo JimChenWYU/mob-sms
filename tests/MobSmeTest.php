@@ -31,23 +31,23 @@ class MobSmeTest extends TestCase
         $this->assertInstanceOf(MessengerInterface::class, $easySms->getMessenger());
     }
 
-    public function testSend()
+    public function testVerify()
     {
         // simple
         $mobSms = \Mockery::mock(MobSms::class.'[getMessenger]', [$this->config]);
         $messenger = \Mockery::mock(Messenger::class, [$mobSms]);
-        $messenger->shouldReceive('send')->with(\Mockery::on(function ($number) {
+        $messenger->shouldReceive('verify')->with(\Mockery::on(function ($number) {
             return $number instanceof PhoneNumber && !empty($number->getNumber());
-        }), 1111)->andReturn('send-result');
+        }), 1111)->andReturn('verify-result');
         $mobSms->shouldReceive('getMessenger')->andReturn($messenger);
-        $this->assertSame('send-result', $mobSms->send('18219111987', 1111));
+        $this->assertSame('verify-result', $mobSms->verify('18219111987', 1111));
 
         // phone number object
         $mobSms = \Mockery::mock(MobSms::class.'[getMessenger]', [$this->config]);
         $number = new PhoneNumber('18219111987', 86);
         $messenger = \Mockery::mock(Messenger::class);
-        $messenger->shouldReceive('send')->with($number, 1111)->andReturn('mock-result');
+        $messenger->shouldReceive('verify')->with($number, 1111)->andReturn('mock-result');
         $mobSms->shouldReceive('getMessenger')->andReturn($messenger);
-        $this->assertSame('mock-result', $mobSms->send($number, 1111));
+        $this->assertSame('mock-result', $mobSms->verify($number, 1111));
     }
 }

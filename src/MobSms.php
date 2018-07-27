@@ -56,11 +56,11 @@ class MobSms
      * @param $code
      * @return mixed
      */
-    public function send($to, $code)
+    public function verify($to, $code)
     {
         $to = $this->formatPhoneNumber($to);
 
-        return $this->getMessenger()->send($to, $code);
+        return $this->getMessenger()->verify($to, $code);
     }
 
     /**

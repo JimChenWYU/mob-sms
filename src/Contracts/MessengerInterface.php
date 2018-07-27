@@ -10,5 +10,5 @@ namespace JimChen\MobSms\Contracts;
 
 interface MessengerInterface
 {
-    public function send(PhoneNumberInterface $to, $code);
+    public function verify(PhoneNumberInterface $to, $code);
 }

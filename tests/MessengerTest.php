@@ -28,7 +28,7 @@ class MessengerTest extends TestCase
      * @expectedException \JimChen\MobSms\Exceptions\RequestErrorException
      * @expectedExceptionMessage AppKey为空
      */
-    public function testSend()
+    public function testVerify()
     {
         /**
          * @var \Mockery $app
@@ -52,8 +52,8 @@ class MessengerTest extends TestCase
             ['status' => 405]
         )->twice();
 
-        $this->assertSame(['status' => Messenger::SUCCESS_CODE], $app->send(new PhoneNumber(18219111987), 1111));
+        $this->assertSame(['status' => Messenger::SUCCESS_CODE], $app->verify(new PhoneNumber(18219111987), 1111));
 
-        $app->send(new PhoneNumber(18219111987), 1111);
+        $app->verify(new PhoneNumber(18219111987), 1111);
     }
 }
