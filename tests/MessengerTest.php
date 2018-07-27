@@ -48,11 +48,11 @@ class MessengerTest extends TestCase
             ],
             'exceptions'  => false,
         ])->andReturn(
-            ['status' => Messenger::SUCCESS_CODE],
+            ['status' => 200],
             ['status' => 405]
         )->twice();
 
-        $this->assertSame(['status' => Messenger::SUCCESS_CODE], $app->verify(new PhoneNumber(18219111987), 1111));
+        $this->assertSame(['status' => 200], $app->verify(new PhoneNumber(18219111987), 1111));
 
         $app->verify(new PhoneNumber(18219111987), 1111);
     }

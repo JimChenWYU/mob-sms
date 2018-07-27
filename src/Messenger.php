@@ -24,20 +24,6 @@ class Messenger implements MessengerInterface
 
     const ENDPOINT_URI = '/sms/verify';
 
-    const SUCCESS_CODE = 200;
-
-    const ERROR_MAP = [
-        200 => '验证成功',
-        405 => 'AppKey为空',
-        406 => 'AppKey无效',
-        456 => '国家代码或手机号码为空',
-        457 => '手机号码格式错误',
-        466 => '请求校验的验证码为空',
-        467 => '请求校验验证码频繁（5分钟内同一个appkey的同一个号码最多只能校验三次）',
-        468 => '验证码错误',
-        474 => '没有打开服务端验证开关',
-    ];
-
     /**
      * @var MobSms
      */
@@ -78,7 +64,7 @@ class Messenger implements MessengerInterface
             'exceptions'  => false,
         ]);
 
-        if (self::SUCCESS_CODE != $result['status']) {
+        if (200 != $result['status']) {
             throw new RequestErrorException($this->getErrorMessage($result['status']), $result['status'], $result);
         }
 
@@ -105,6 +91,18 @@ class Messenger implements MessengerInterface
      */
     protected function getErrorMessage($code)
     {
-        return isset(self::ERROR_MAP[$code]) ? self::ERROR_MAP[$code] : '未知错误';
+        $errorMappers = [
+            200 => '验证成功',
+            405 => 'AppKey为空',
+            406 => 'AppKey无效',
+            456 => '国家代码或手机号码为空',
+            457 => '手机号码格式错误',
+            466 => '请求校验的验证码为空',
+            467 => '请求校验验证码频繁（5分钟内同一个appkey的同一个号码最多只能校验三次）',
+            468 => '验证码错误',
+            474 => '没有打开服务端验证开关',
+        ];
+
+        return isset($errorMappers[$code]) ? $errorMappers[$code] : '未知错误';
     }
 }
