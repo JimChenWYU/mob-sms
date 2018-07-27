@@ -6,7 +6,9 @@
 
 ### 安装
 
-`$ composer require "jimchen/mob-sms"`
+```bash
+$ composer require "jimchen/mob-sms"
+```
 
 ### 环境需求
 
