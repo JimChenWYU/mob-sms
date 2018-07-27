@@ -1,0 +1,20 @@
+{
+    "name": "jimchen/mobsms-sdk",
+    "description": "Mob.com SMS-SDK",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JimChen",
+            "email": "18219111672@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "pimple/pimple": "^3.0",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    }
+}
