@@ -84,7 +84,8 @@ class Messenger implements MessengerInterface
      */
     protected function buildEndpoint(Config $config)
     {
-        return 'https://' . $config->get('domain', self::ENDPOINT_HOST) . self::ENDPOINT_URI;
+    	$schema = $config->get('https', true) ? 'https' : 'http';
+        return $schema . '://' . $config->get('domain', self::ENDPOINT_HOST) . self::ENDPOINT_URI;
     }
 
     /**
