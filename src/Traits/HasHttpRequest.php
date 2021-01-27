@@ -9,6 +9,7 @@
 namespace JimChen\MobSms\Traits;
 
 use GuzzleHttp\Client;
+use JimChen\MobSms\Support\Config;
 use Psr\Http\Message\ResponseInterface;
 
 trait HasHttpRequest
@@ -85,12 +86,20 @@ trait HasHttpRequest
      */
     protected function getBaseOptions()
     {
+	    $httpOptions = [];
+    	if (property_exists($this, 'config') && $this->config instanceof Config) {
+		    /**
+		     * 接口请求相关配置，超时时间等，具体可用参数请参考：
+		     * @see http://docs.guzzlephp.org/en/stable/request-config.html
+		     */
+    		$httpOptions = $this->config->get('http', []);
+	    }
         $options = [
             'base_uri' => method_exists($this, 'getBaseUri') ? $this->getBaseUri() : '',
-            'timeout'  => property_exists($this, 'timeout') ? $this->timeout : 5.0,
+            'timeout'  => property_exists($this, 'timeout') ? $this->timeout : 30.0,
         ];
 
-        return $options;
+        return array_replace_recursive($options, $httpOptions);
     }
 
     /**

@@ -29,6 +29,11 @@ class Messenger implements MessengerInterface
      */
     protected $mobSms;
 
+	/**
+	 * @var Config
+	 */
+    protected $config;
+
     /**
      * Messenger constructor.
      * @param MobSms $mobSms
@@ -36,6 +41,7 @@ class Messenger implements MessengerInterface
     public function __construct(MobSms $mobSms)
     {
         $this->mobSms = $mobSms;
+        $this->config = $mobSms->getConfig();
     }
 
     /**
