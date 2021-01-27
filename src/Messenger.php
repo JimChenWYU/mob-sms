@@ -59,11 +59,11 @@ class Messenger implements MessengerInterface
             'accept'       => 'application/json',
         ];
 
-        $result = $this->request('post', $this->buildEndpoint($this->mobSms->getConfig()), [
+        $result = $this->request('post', $this->buildEndpoint($this->config), [
             'headers'     => $headers,
             'form_params' => [
-                'appkey' => $this->mobSms->getConfig()->get('appkey'),
-                'zone'   => $to->getIDDCode() ?: $this->mobSms->getConfig()->get('zone', static::DEFAULT_ZONE),
+                'appkey' => $this->config->get('appkey'),
+                'zone'   => $to->getIDDCode() ?: $this->config->get('zone', static::DEFAULT_ZONE),
                 'phone'  => $to->getNumber(),
                 'code'   => $code,
             ],
