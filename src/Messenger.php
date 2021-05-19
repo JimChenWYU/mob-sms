@@ -73,6 +73,9 @@ class Messenger implements MessengerInterface
         if (is_string($result)) {
             $result = json_decode($result, true);
         }
+        if (is_null($result)) {
+	        throw new RequestErrorException('未知错误', 0);
+        }
 
         if (200 != $result['status']) {
             throw new RequestErrorException($this->getErrorMessage($result['status']), $result['status'], $result);
