@@ -18,12 +18,12 @@ jobs:
           - php: 5.6
             phpunit: 5.*
           - php: 7.0
-            phpunit: 6.*
+            phpunit: 5.*
           - php: 7.1
-            phpunit: 7.*
+            phpunit: 5.*
           - php: 7.2
-            phpunit: 8.*
-    name: P${{ matrix.php }} - L${{ matrix.phpunit }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
+            phpunit: 5.*
+    name: P${{ matrix.php }} - phpunit_${{ matrix.phpunit }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
